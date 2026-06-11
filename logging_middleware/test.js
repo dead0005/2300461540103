@@ -1,14 +1,16 @@
-const Log=require("./logger")
+require("dotenv").config();
+const Log=require("./logger");
 
 async function run(){
 const r=await Log(
 "backend",
 "info",
 "service",
-"middleware test successful"
-)
+"test log",
+process.env.TOKEN
+);
 
-console.log(r.data)
+console.log(r);
 }
 
-run()
+run();
