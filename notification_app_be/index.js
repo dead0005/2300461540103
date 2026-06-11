@@ -13,36 +13,12 @@ Authorization:`Bearer ${process.env.TOKEN}`
 }
 );
 
-const notifications=res.data.notifications;
-
-const priority={
-Placement:3,
-Result:2,
-Event:1
-};
-
-notifications.sort((a,b)=>{
-
-if(priority[b.Type]!==priority[a.Type]){
-return priority[b.Type]-priority[a.Type];
-}
-
-return new Date(b.Timestamp)-new Date(a.Timestamp);
-
-});
-
-const top10=notifications.slice(0,10);
-
-console.log("TOP 10 NOTIFICATIONS\n");
-
-top10.forEach((n,i)=>{
-console.log(
-`${i+1}. [${n.Type}] ${n.Message} (${n.Timestamp})`
-);
-});
+console.log(res.data);
 
 }catch(err){
-console.log(err.response?.data||err.message);
+console.log("ERROR:");
+console.log(err.response?.status);
+console.log(err.response?.data);
 }
 }
 
